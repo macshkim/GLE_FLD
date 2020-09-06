@@ -23,10 +23,10 @@ def main(args):
 
     # load dataset
     if args.dataset == 'deepfashion':
-        ds = pd.read_csv('./info/df_info.csv')
+        ds = pd.read_csv(os.path.join(args.data_dir, 'info/df_info.csv'))
         from dataset import DeepFashionDataset as DataManager
     elif args.dataset == 'fld':
-        ds = pd.read_csv('./info/fld_info.csv')
+        ds = pd.read_csv(os.path.join(args.data_dir, 'info/fld_info.csv'))
         from dataset import FLDDataset as DataManager
     else:
         raise ValueError
