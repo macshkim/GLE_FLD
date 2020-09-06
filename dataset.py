@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from skimage import io, transform
 from torchvision import transforms
 
+
 def gaussian_map(image_w, image_h, center_x, center_y, R):
     Gauss_map = np.zeros((image_h, image_w))
     mask_x = np.matlib.repmat(center_x, image_h, image_w)
@@ -15,7 +16,7 @@ def gaussian_map(image_w, image_h, center_x, center_y, R):
     y1 = np.arange(image_h)
     y_map = np.matlib.repmat(y1, image_w, 1)
     y_map = np.transpose(y_map)
-    Gauss_map = np.sqrt((x_map - mask_x)**2 + (y_map - mask_y)**2)
+    Gauss_map = np.sqrt((x_map - mask_x) ** 2 + (y_map - mask_y) ** 2)
     Gauss_map = np.exp(-0.5 * Gauss_map / R)
     return Gauss_map
 
@@ -31,6 +32,18 @@ def gen_landmark_map(image_w, image_h, landmark_in_pic, landmark_pos, R):
             ret.append(channel_map.reshape((image_w, image_h)))
     return np.stack(ret, axis=0).astype(np.float32)
 
+
+class RandomFlip(object):
+
+    def __call__(self, image, landmarks):
+        h, w = image.shape[:2]
+        if np.random.rand() > 0.5:
+            image = np.fliplr(image)
+            landmarks[:, 0] = w - landmarks[:, 0]
+
+        return image, landmarks
+
+
 class BBoxCrop(object):
 
     def __call__(self, image, landmarks, x_1, y_1, x_2, y_2):
@@ -42,11 +55,12 @@ class BBoxCrop(object):
         new_w = x_2 - x_1
 
         image = image[top: top + new_h,
-                      left: left + new_w]
+                left: left + new_w]
 
         landmarks = landmarks - [left, top]
 
         return image, landmarks
+
 
 class Rescale(object):
     def __init__(self, output_size):
@@ -71,6 +85,7 @@ class Rescale(object):
 
         return img, landmarks
 
+
 class LandmarksNormalize(object):
 
     def __call__(self, image, landmark_pos):
@@ -86,6 +101,7 @@ class LandmarksUnNormalize(object):
         landmark_pos = landmark_pos * [float(w), float(h)]
         return landmark_pos
 
+
 class CheckLandmarks(object):
 
     def __call__(self, image, landmark_vis, landmark_in_pic, landmark_pos):
@@ -94,13 +110,15 @@ class CheckLandmarks(object):
         landmark_in_pic = landmark_in_pic.copy()
         landmark_pos = landmark_pos.copy()
         for i, vis in enumerate(landmark_vis):
-            if (landmark_pos[i, 0] < 0) or (landmark_pos[i, 0] >= w) or (landmark_pos[i, 1] < 0) or (landmark_pos[i, 1] >= h):
+            if (landmark_pos[i, 0] < 0) or (landmark_pos[i, 0] >= w) or (landmark_pos[i, 1] < 0) or (
+                    landmark_pos[i, 1] >= h):
                 landmark_vis[i] = 0
                 landmark_in_pic[i] = 0
         for i, in_pic in enumerate(landmark_in_pic):
             if in_pic == 0:
                 landmark_pos[i, :] = 0
         return landmark_vis, landmark_in_pic, landmark_pos
+
 
 class DeepFashionDataset(torch.utils.data.Dataset):
     def __init__(self, ds, root):
@@ -130,7 +148,8 @@ class DeepFashionDataset(torch.utils.data.Dataset):
         image, landmark_pos = self.bbox_crop(image, landmark_pos, sample.x_1, sample.y_1, sample.x_2, sample.y_2)
         image, landmark_pos = self.rescale224square(image, landmark_pos)
 
-        landmark_vis, landmark_in_pic, landmark_pos = self.check_landmarks(image, landmark_vis, landmark_in_pic, landmark_pos)
+        landmark_vis, landmark_in_pic, landmark_pos = self.check_landmarks(image, landmark_vis, landmark_in_pic,
+                                                                           landmark_pos)
 
         landmark_pos = landmark_pos.astype(np.float32)
         landmark_pos_normalized = self.landmarks_normalize(image, landmark_pos).astype(np.float32)
@@ -172,6 +191,7 @@ class FLDDataset(torch.utils.data.Dataset):
         self.landmarks_normalize = LandmarksNormalize()
         self.landmarks_unnormalize = LandmarksUnNormalize()
         self.check_landmarks = CheckLandmarks()
+        self.random_flip = RandomFlip()
 
     def __getitem__(self, i):
         sample = self.ds.iloc[i]
