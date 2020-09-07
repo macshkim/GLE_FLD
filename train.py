@@ -107,7 +107,7 @@ def test(net, test_loader, epoch):
             output = net(sample)
             evaluator.add(output, sample)
             if (i + 1) % 100 == 0:
-                print('Val Step [{}/{}]'.format(j + 1, test_step))
+                print('Val Step [{}/{}]'.format(i + 1, test_step))
 
         results = evaluator.evaluate()
         print('Epoch {}/{}'.format(epoch + 1, args.epoch))

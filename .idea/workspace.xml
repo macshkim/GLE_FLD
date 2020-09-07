@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ea2b160-7dc6-4258-8b7c-aac566f95cbd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Anno/Readme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anno/info.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/architecture.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/example.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/init" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/result.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +21,34 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RunManager">
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="global_local_embed" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.train" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -41,6 +61,22 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1704" height="303" key="GridCell.Tab.0.bottom" timestamp="1599403700475">
+      <screen x="51" y="23" width="1741" height="1097" />
+    </state>
+    <state width="1704" height="303" key="GridCell.Tab.0.bottom/51.23.1741.1097@51.23.1741.1097" timestamp="1599403700475" />
+    <state width="1704" height="303" key="GridCell.Tab.0.center" timestamp="1599403700474">
+      <screen x="51" y="23" width="1741" height="1097" />
+    </state>
+    <state width="1704" height="303" key="GridCell.Tab.0.center/51.23.1741.1097@51.23.1741.1097" timestamp="1599403700474" />
+    <state width="1704" height="303" key="GridCell.Tab.0.left" timestamp="1599403700474">
+      <screen x="51" y="23" width="1741" height="1097" />
+    </state>
+    <state width="1704" height="303" key="GridCell.Tab.0.left/51.23.1741.1097@51.23.1741.1097" timestamp="1599403700474" />
+    <state width="1704" height="303" key="GridCell.Tab.0.right" timestamp="1599403700475">
+      <screen x="51" y="23" width="1741" height="1097" />
+    </state>
+    <state width="1704" height="303" key="GridCell.Tab.0.right/51.23.1741.1097@51.23.1741.1097" timestamp="1599403700475" />
     <state x="415" y="210" key="SettingsEditor" timestamp="1599403157664">
       <screen x="51" y="23" width="1741" height="1097" />
     </state>
