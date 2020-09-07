@@ -101,9 +101,11 @@ def test(net, test_loader, epoch):
     print('\nEvaluating...')
     with torch.no_grad():
         evaluator = Evaluator()
-        for i, sample in enumerate(test_loader):
+        # for i, sample in enumerate(test_loader):
+        for i, sample in enumerate(tqdm(test_loader)):
             for key in sample:
-                sample[key] = sample[key].cuda()
+                if torch.cuda.is_available():
+                    sample[key] = sample[key].cuda()
             output = net(sample)
             evaluator.add(output, sample)
             if (i + 1) % 100 == 0:
@@ -135,7 +137,7 @@ if __name__ == '__main__':
                         help='the number of epoch')
     parser.add_argument('--learning_rate', type=float, default=0.0001,
                         help='initial learning rate')
-    parser.add_argument('--evaluate', type=bool, default=False,
+    parser.add_argument('--evaluate', type=bool, default=True,
                         help='evaluation only')
     parser.add_argument('--weight_file', type=str, default=None,
                         help='weight file')
